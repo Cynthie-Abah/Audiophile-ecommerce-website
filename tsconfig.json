@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "convex/products.js", "convex/orders.js"  ],
   "exclude": ["node_modules"]
 }

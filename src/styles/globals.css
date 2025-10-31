@@ -9,6 +9,7 @@
   --color-gray-lighter: #fafafa;
   --color-white: #ffffff;
   --color-black: #000000;
+  --color-bg-dark: #0e0e0e;
 
   /* TYPOGRAPHY */
   --font-manrope: "Manrope", sans-serif;
@@ -43,12 +44,6 @@
   }
 }
 @layer base {
-  body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-manrope), sans-serif;
-  }
-
   h1 {
     font-size: var(--text-h1);
     line-height: 58px;
