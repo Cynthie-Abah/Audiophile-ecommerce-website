@@ -6,16 +6,29 @@ import { useProducts } from "@/hooks/useProducts";
 import { useCart } from "@/hooks/cart/useCart";
 import Spinner from "@/components/ui/spinner";
 import { useUpdateCart } from "@/hooks/cart/useUpdateCart";
+import { useEffect, useState } from "react";
 
 export default function Page() {
     const router = useRouter()
-    const userId = localStorage.getItem("userId") ?? ''
+    // const userId = localStorage.getItem("userId")
     const { cart, isLoading, error } = useCart();
     const {products, isLoading: isfetching} = useProducts()
     const {updateItem} = useUpdateCart();
 
+    const [userId, setUserId] = useState<string | null>(null);
+    
+      useEffect(() => {
+        // Runs only in the browser
+        if (typeof window !== "undefined") {
+          const id = localStorage.getItem("userId");
+          setUserId(id);
+        }
+      }, []);
+
   const handleUpdateQuantity = (newQty: number, slug: string) => {
+    if (userId) {
       updateItem({ userId, slug, quantity: newQty })
+    }
 };
 
     if (isLoading || isfetching) return <Spinner />;

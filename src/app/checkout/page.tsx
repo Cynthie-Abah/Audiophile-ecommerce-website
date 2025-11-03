@@ -1,31 +1,33 @@
-import { CartItem } from "../../../types";
+"use client"
+import { useCart } from "@/hooks/cart/useCart";
 import { truncateText } from "@/libs/utils";
 
-export const items: CartItem[] = [
-  {
-    productId: "1",
-    name: "XX59 Headphones",
-    price: 899,
-    quantity: 1,
-    image: "/assets/product-xx59-headphones/desktop/image-product.jpg",
-  },
-  {
-    productId: "2",
-    name: "XX99 Mark I Headphones",
-    price: 1750,
-    quantity: 2,
-    image: "/assets/product-xx99-mark-one-headphones/desktop/image-product.jpg",
-  },
-  {
-    productId: "3",
-    name: "XX99 Mark II Headphones",
-    price: 2999,
-    quantity: 1,
-    image: "/assets/product-xx99-mark-two-headphones/desktop/image-product.jpg",
-  },
-];
-
+// export const items: CartItem[] = [
+//   {
+//     slug: "1",
+//     name: "XX59 Headphones",
+//     price: 899,
+//     quantity: 1,
+//     image: "/assets/product-xx59-headphones/desktop/image-product.jpg",
+//   },
+//   {
+//     slug: "2",
+//     name: "XX99 Mark I Headphones",
+//     price: 1750,
+//     quantity: 2,
+//     image: "/assets/product-xx99-mark-one-headphones/desktop/image-product.jpg",
+//   },
+//   {
+//     slug: "3",
+//     name: "XX99 Mark II Headphones",
+//     price: 2999,
+//     quantity: 1,
+//     image: "/assets/product-xx99-mark-two-headphones/desktop/image-product.jpg",
+//   },
+// ];
+// remove the state from here so it remains a server comp
 function Page() {
+const { cart, isLoading, error } = useCart();
   return (
     <div className="bg-gray-light px-5 sm:px-10 md:px-5 lg:px-14 py-5 sm:py-10">
         <button className="py-5 md:py-10 text-black/50">Go Back</button>
@@ -156,12 +158,12 @@ function Page() {
 
                 {/* Cart Items */}
                 <div className="space-y-4">
-                    {items.length === 0 ? (
+                    {cart?.items.length === 0 ? (
                               <div className="text-center py-10 text-gray-500">Your cart is empty</div>
                             ) : (
                               <div className="space-y-6 lg:max-h-100 overflow-y-auto">
-                                {items.map((item) => (
-                                  <div key={item.productId} className="flex items-center justify-between">
+                                {cart?.items.map((item) => (
+                                  <div key={item.slug} className="flex items-center justify-between">
                                     <img
                                       src={item.image}
                                       alt={item.name}
