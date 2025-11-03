@@ -1,87 +1,37 @@
+"use client"
 import CategoriesSection from "@/components/ui/categories-section"
-import Image from "next/image"
-
+import ProductSection from "@/components/ui/product-section";
+import Spinner from "@/components/ui/spinner";
+import { useProducts } from "@/hooks/useProducts";
+import { useRouter } from "next/navigation";
+// HEADPHONES
 const Page = () => {
+  const { products, isLoading, error } = useProducts();
+  const router = useRouter()
+
+  if (isLoading) return <Spinner />;
+  if (error) return <p className="w-full h-screen flex justify-center items-center text-center py-10 text-red-500">{error}</p>;
+
+  const headphones = products?.filter((product) => product.category === "headphones");
+  console.log(headphones);
+  
+
   return (
     <div>
-
-       <div className="w-full flex justify-center items-center h-[588px] mt-48 mb-20 px-32">
-              <div className="flex-1">
-                  <figure className=" w-[540px] h-[560px] relative rounded-md">
-                    <Image
-                      fill
-                      className=" object-cover rounded-md"
-                      src={'/shared/desktop/image-xx99-mark-two-headphones.jpg'}
-                      alt="Headphones category"
-                      quality={100}
-                      />
-                  </figure>
-                </div>
-
-              <div className="flex-1 pl-28 ">
-                <article className="w-9/12  my-auto">
-                  <span className="text-primary uppercase text-sm tracking-[10px] block pb-4">new product</span>
-                  <h3 className="font-semibold text-h2">XX99 Mark II Headphones</h3>
-                  <p className="py-7 text-sm leading-6 text-black/50 font-normal">The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.</p>
-                  <button className="bg-primary text-white px-6 py-3 uppercase tracking-wide font-semibold text-sm">
+      { headphones && headphones.length > 0 ?
+      headphones.map((headphone, index)=> {
+        return <ProductSection product={headphone} key={headphone._id} reverse={index % 2 === 1}>
+                <button onClick={()=> router.push(`/products/${headphone.slug}`)} className="bg-primary cursor-pointer text-white px-6 py-3 uppercase tracking-wide font-semibold text-sm">
                     See Product
-                  </button>
-                </article>
-              </div>
-                
-      </div>
+                </button>
+              </ProductSection>
+      }) : 
 
-       <div className="w-full flex justify-center items-center flex-row-reverse h-[588px] mt-48 mb-20 px-32">
-              <div className="flex-1">
-                  <figure className=" w-[540px] h-[560px] relative rounded-md">
-                    <Image
-                      fill
-                      className=" object-cover rounded-md"
-                      src={'/shared/desktop/image-xx99-mark-one-headphones.jpg'}
-                      alt="Headphones category"
-                      quality={100}
-                      />
-                  </figure>
-                </div>
-
-              <div className="flex-1 pl-28 ">
-                <article className="w-9/12  my-auto">
-                  <span className="text-primary uppercase text-sm tracking-[10px] block pb-4">new product</span>
-                  <h3 className="font-semibold text-h2">XX99 Mark II Headphones</h3>
-                  <p className="py-7 text-sm leading-6 text-black/50 font-normal">The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.</p>
-                  <button className="bg-primary text-white px-6 py-3 uppercase tracking-wide font-semibold text-sm">
-                    See Product
-                  </button>
-                </article>
-              </div>
-                
-      </div>
-
-       <div className="w-full flex justify-center items-center h-[588px] mt-48 mb-20 px-32">
-              <div className="flex-1">
-                  <figure className=" w-[540px] h-[560px] relative rounded-md">
-                    <Image
-                      fill
-                      className=" object-cover rounded-md"
-                      src={'/shared/desktop/image-xx59-headphones.jpg'}
-                      alt="Headphones category"
-                      quality={100}
-                      />
-                  </figure>
-                </div>
-
-              <div className="flex-1 pl-28 ">
-                <article className="w-9/12  my-auto">
-                  <span className="text-primary uppercase text-sm tracking-[10px] block pb-4">new product</span>
-                  <h3 className="font-semibold text-h2">XX99 Mark II Headphones</h3>
-                  <p className="py-7 text-sm leading-6 text-black/50 font-normal">The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.</p>
-                  <button className="bg-primary text-white px-6 py-3 uppercase tracking-wide font-semibold text-sm">
-                    See Product
-                  </button>
-                </article>
-              </div>
-                
-      </div>
+      <div className="flex flex-col items-center justify-center h-32 bg-gray-light rounded-2xl shadow-sm text-gray-600 text-lg font-medium w-2xl my-16 mx-auto">
+        No Headphones available
+        </div>
+        
+    }
 
       <CategoriesSection />
 

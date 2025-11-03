@@ -9,7 +9,7 @@ type CatBoxProps = {
 
     export const CatBox = ({link, imageSrc, catName }: CatBoxProps) => {
     return (
-    <div className="cat-box relative bg-gray-200 w-[350px] h-[207px] rounded-md flex items-center justify-center">
+   <div className="cat-box relative bg-gray-200 w-full my-14 sm:w-[33%] md:w-[30%] md:min-w-[223px] h-[207px] rounded-md flex items-center justify-center">
         <figure className="w-52 h-52 absolute -top-20">
             <Image
             fill

@@ -1,44 +1,67 @@
 "use client"
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Hero = () => {
   const pathname = usePathname();
+  const router  = useRouter();
   return (
 <>
 
-  { pathname === '/' ? 
-    <section className="w-[1110px] flex flex-col md:flex-row items-center justify-between text-white mx-auto">
-      {/* Text Section */}
-    <article className="pr-8 text-center md:text-left ">
-      <p className="text-white/50 text-sm tracking-[10px] uppercase">
-        NEW PRODUCT
-      </p>
-      <h3 className="text-h1 md:text-6xl font-bold uppercase leading-tight">
-        XX99 Mark II <br /> Headphones
-      </h3>
-      <p className="text-white/70 max-w-md mx-auto md:mx-0 w-5/6">
-        Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
-      </p>
-      <button className="mt-8 bg-primary  text-white px-6 py-3 uppercase tracking-widest text-sm hover:bg-primary-light transition">
-        See Product
-      </button>
-    </article>
+  { pathname === '/' ? <>
 
-    {/* Image Section */}
-    <div className=" relative w-full h-full min-h-[700px] flex items-center justify-center">
-      <Image
-        src="/headphones.png"
-        alt="Headphones"
-        className="object-contain w-full h-full"
-        fill
-        quality={80}
-      />
-    </div>
-    </section> : 
-    <div className="uppercase h-80 flex justify-center items-end pb-20">
-      <h2 className="font-semibold text4xl">{pathname.slice(1, -1)}</h2>
-    </div>
+    <section className="md:flex flex-col md:flex-row-reverse relative md:static items-center justify-center md:justify-between text-white mx-auto md:pt-0 xl:max-w-[1110px] flex px-6 md:px-10 h-screen">
+      {/* Mobile Background Image */}
+      <div className="absolute inset-0 md:hidden">
+        <Image
+          src="/headphones.png"
+          alt="Headphones"
+          fill
+          priority
+          quality={90}
+          className="object-cover object-center opacity-80"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+
+      {/* Desktop Image Section */}
+      <div className="md:w-1/2 relative w-full h-full min-h-[700px] hidden md:flex items-center justify-center">
+        <Image
+          src="/headphones.png"
+          alt="Headphones"
+          className="object-contain"
+          fill
+          quality={90}
+          priority
+        />
+      </div>
+
+      {/* Text Section */}
+      <article className="relative z-10 lg:w-1/2 md:pr-8 flex flex-col items-center md:items-start gap-6 text-center md:text-left mx-auto">
+        <p className="text-white/50 text-sm tracking-[10px] uppercase">
+          NEW PRODUCT
+        </p>
+
+        <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase leading-tight">
+          XX99 Mark II <br /> Headphones
+        </h3>
+
+        <p className="text-sm sm:text-base text-white/70 max-w-md mx-auto md:mx-0 w-5/6 leading-loose sm:leading-normal">
+          Experience natural, lifelike audio and exceptional build quality made
+          for the passionate music enthusiast.
+        </p>
+
+        <button onClick={()=> router.push(`/products/xx99-mark-two-headphones`)} className="mt-8 cursor-pointer bg-primary text-white px-6 py-3 uppercase tracking-widest text-sm hover:bg-primary-light transition">
+          See Product
+        </button>
+      </article>
+    </section>
+
+    </> : pathname === '/headphones' || pathname === '/speakers' || pathname === '/earphones' ?
+
+    <div className="uppercase h-60 sm:h-80 flex justify-center items-end pb-14 sm:pb-20">
+      <h2 className="font-semibold text-3xl sm:text-h2">{pathname.slice(1)}</h2>
+    </div> : null
 
   }
 </>
