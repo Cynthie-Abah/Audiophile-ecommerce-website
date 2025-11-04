@@ -9,6 +9,8 @@ import { Bounce, ToastContainer } from "react-toastify";
 import CartModal from "@/components/cart-modal";
 import { Suspense } from "react";
 import Spinner from "@/components/ui/spinner";
+import { CheckoutForm } from "@/components/checkout/checkout-form";
+import OrderConfirmationPage from "@/components/checkout/OrderConfirmation";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -50,6 +52,7 @@ export default function RootLayout({
           <main>
             {children}
             <Suspense fallback={<Spinner />}><CartModal /></Suspense>
+            <Suspense fallback={<Spinner />}><OrderConfirmationPage /></Suspense>
           </main>
         </Providers>
         <Footer />

@@ -6,7 +6,7 @@ interface OrderConfirmationEmailProps {
 }
 
 
-export function OrderConfirmationEmail({orderInfo}: OrderConfirmationEmailProps) {
+export function OrderConfirmationEmail({ orderInfo }: OrderConfirmationEmailProps) {
   return (
     <Html>
       <Body style={{ fontFamily: "Arial, sans-serif", margin: 0, padding: 0, backgroundColor: "#f4f4f5" }}>
@@ -48,23 +48,23 @@ export function OrderConfirmationEmail({orderInfo}: OrderConfirmationEmailProps)
               ))}
             </ul>
 
-            <div style={{textTransform: 'uppercase', paddingTop: 10}}>
-                <div  style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15}}>
-                <span style={{color: 'black', opacity: 50, fontSize:15}}>Total</span>
-                <span style={{fontWeight: 'bold', fontSize: 18}}>$ {orderInfo.subTotal}</span>
-                </div>
-                <div  style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15}}>
-                <span style={{color: 'black', opacity: 50, fontSize:15}}>Shipping</span>
-                <span style={{fontWeight: 'bold', fontSize: 18}}>$ {orderInfo.shipping}</span>
-                </div>
-                <div  style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15}}>
-                <span style={{color: 'black', opacity: 50, fontSize:15}}>VAT (Included)</span>
-                <span style={{fontWeight: 'bold', fontSize: 18}}>$ {orderInfo.tax}</span>
-                </div>
-                <div  style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15}}>
-                <span style={{color: 'black', opacity: 50, fontSize:15}}>Grand Total</span>
-                <span style={{fontWeight: 'bold', fontSize: 18, color: '#d87d4a'}}>$ {orderInfo.grandTotal}</span>
-                </div>
+            <div style={{ textTransform: 'uppercase', paddingTop: 10 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15 }}>
+                <span style={{ color: 'black', opacity: 50, fontSize: 15 }}>Total</span>
+                <span style={{ fontWeight: 'bold', fontSize: 18 }}>$ {orderInfo.subTotal}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15 }}>
+                <span style={{ color: 'black', opacity: 50, fontSize: 15 }}>Shipping</span>
+                <span style={{ fontWeight: 'bold', fontSize: 18 }}>$ {orderInfo.shipping}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15 }}>
+                <span style={{ color: 'black', opacity: 50, fontSize: 15 }}>VAT (Included)</span>
+                <span style={{ fontWeight: 'bold', fontSize: 18 }}>$ {orderInfo.tax}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15 }}>
+                <span style={{ color: 'black', opacity: 50, fontSize: 15 }}>Grand Total</span>
+                <span style={{ fontWeight: 'bold', fontSize: 18, color: '#d87d4a' }}>$ {orderInfo.grandTotal}</span>
+              </div>
             </div>
           </div>
 
@@ -81,8 +81,8 @@ export function OrderConfirmationEmail({orderInfo}: OrderConfirmationEmailProps)
           {/* CTA Button */}
           <div style={{ textAlign: "center", padding: "0 20px 30px 20px" }}>
             <Button
-              href={`http://localhost:3000/?view=order-${orderInfo.orderId}`}
-              // href={`https://audiophile-ecommerce-website-pi.vercel.app/?view=order-${orderInfo.orderId}`}
+              // href={`http://localhost:3000/?view=order-${orderInfo.orderId}`}
+              href={`https://audiophile-ecommerce-website-pi.vercel.app/?view=order-${orderInfo.orderId}`}
               style={{
                 backgroundColor: "#D87D4A",
                 color: "#fff",

@@ -36,7 +36,7 @@ export const createOrder = mutation({
   handler: async ({ db }, args) => {
     const newOrder = {
       ...args,
-      status: "pending", 
+      status: "pending",
       createdAt: Date.now(),
     };
 
@@ -52,9 +52,12 @@ export const getOrders = query(async ({ db }) => {
 
 // Fetch a single order by ID
 export const getOrderById = query({
-  args: { id: v.id("orders") },
-  handler: async ({ db }, { id }) => {
-    return await db.get(id);
+  args: { orderId: v.string() },
+  handler: async ({ db }, { orderId }) => {
+    return await db
+      .query('orders')
+      .filter((q) => q.eq(q.field('orderId'), orderId))
+      .first();
   },
 });
 
