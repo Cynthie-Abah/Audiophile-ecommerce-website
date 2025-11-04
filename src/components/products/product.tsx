@@ -8,11 +8,13 @@ import ProductSectionMobile from '../ui/product-section-mobile'
 import { useMemo, useState } from 'react'
 import { useAddCreateCart } from '@/hooks/cart/useAddCreateCart'
 import Image from 'next/image'
+import { toast } from 'react-toastify'
 
 function Product({ slug }: { slug: string }) {
   const router = useRouter();
   const { product, isLoading, error } = useSingleProduct(slug)
   const [quantity, setQuantity] = useState<number>(0);
+  // const [toolTip, setShowToolTip] = useState(false)
 
   const handleUpdateQuantity = (newQty: number) => {
     setQuantity(newQty)
@@ -30,6 +32,18 @@ function Product({ slug }: { slug: string }) {
   }, [product, quantity]);
 
   const { handleAddToCart, isloading } = useAddCreateCart()
+
+  const addToCart = () => {
+    if (!product || quantity <= 0) {
+      toast.warning('Select a Quantity to add to cart', {
+        // duration: 1500
+      })
+      return
+    }
+    else if (cartItem) {
+      handleAddToCart([cartItem])
+    }
+  }
 
   if (isLoading) return <Spinner />;
   if (error) return <p className="w-full h-screen flex justify-center items-center text-center py-10 text-red-500">{error}</p>;
@@ -50,7 +64,7 @@ function Product({ slug }: { slug: string }) {
                 <QuantitySelector quantity={quantity} limit={product.available} onChange={(newQuan: number) => handleUpdateQuantity(newQuan)} />
 
                 {/* Add to Cart Button */}
-                <button onClick={() => cartItem && handleAddToCart([cartItem])} disabled={isloading} className=" w-full px-6 py-3 bg-primary text-sm text-white font-semibold uppercase tracking-wide hover:bg-primary-light transition disabled:bg-primary-light">
+                <button onClick={addToCart} disabled={isloading} className=" w-full px-6 py-3 bg-primary text-sm text-white font-semibold uppercase tracking-wide hover:bg-primary-light transition disabled:bg-primary-light">
                   {isloading ? 'Adding...' : 'Add to Cart'}
                 </button>
               </div>
@@ -65,7 +79,7 @@ function Product({ slug }: { slug: string }) {
                 <QuantitySelector quantity={quantity} limit={product.available} onChange={(newQuan: number) => handleUpdateQuantity(newQuan)} />
 
                 {/* Add to Cart Button */}
-                <button onClick={() => cartItem && handleAddToCart([cartItem])} disabled={isloading} className="px-6 py-3 bg-primary text-white font-semibold uppercase tracking-wide hover:bg-primary-light transition disabled:bg-primary-light flex justify-center items-center w-full">
+                <button onClick={addToCart} disabled={isloading} className="px-6 py-3 bg-primary text-white font-semibold uppercase tracking-wide hover:bg-primary-light transition disabled:bg-primary-light flex justify-center items-center w-full">
                   {isloading ? 'Adding...' : 'Add to Cart'}
                 </button>
               </div>
