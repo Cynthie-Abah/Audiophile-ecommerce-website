@@ -43,41 +43,41 @@ function OrderConfirmationContent() {
                     <div className="flex flex-col sm:flex-row overflow-hidden rounded-md shadow-md">
 
                         <div className="bg-gray-light flex-1 p-3 px-5 text-left">
-                            <div className="flex justify-between">
+                            <div className="flex justify-between items-center">
 
                                 <div className="flex items-center gap-3">
 
-                                    <div className="w-12 h-12 relative">
+                                    <div className="w-24 h-24 sm:w-12 sm:h-12 relative">
                                         <Image
                                             fill
                                             src={order?.items[0].image ?? ''}
-                                            alt="XX99 MK II"
+                                            alt={order?.items[0].name ?? ''}
                                             className="rounded-md object-cover"
                                         />
                                     </div>
                                     <div>
-                                        <p className="font-semibold text-black">{order?.items[0].name}</p>
-                                        <p className="text-gray-500 font-sm">$ {order?.items[0].price}</p>
+                                        <p className="font-semibold text-xl sm:text-lg text-black leading-loose">{order?.items[0].name}</p>
+                                        <p className="text-gray-500 text-lg sm:text-base">$ {order?.items[0].price}</p>
                                     </div>
                                 </div>
 
-                                <span className="text-gray-600 font-semibold">x{order?.items[0].quantity}</span>
+                                <span className="text-gray-600 font-semibold text-xl sm:text-base">x{order?.items[0].quantity}</span>
                             </div>
                             {
                                 (order?.items.length && order?.items.length > 1) &&
                                 <>
                                     <hr className="my-4 border-gray-300" />
 
-                                    <p className="text-gray-500 text-sm text-center">
+                                    <p className="text-gray-500 text-base sm:text-sm text-center">
                                         {`and ${(order?.items.length) - 1} other item(s)`}
                                     </p>
                                 </>
                             }
                         </div>
 
-                        <div className="bg-black text-white flex flex-col justify-center items-start sm:items-start px-8 py-3">
-                            <p className="text-sm uppercase text-gray-400 tracking-wide">Grand Total</p>
-                            <p className="text-xl sm:text-2xl font-bold mt-2">$ {order?.grandTotal}</p>
+                        <div className="bg-black text-white flex flex-col justify-center items-start sm:items-start px-8 py-5 sm:py-3">
+                            <p className="text-lg sm:text-sm uppercase text-gray-400 tracking-wide">Grand Total</p>
+                            <p className=" text-xl sm:text-2xl font-bold mt-2">$ {order?.grandTotal}</p>
                         </div>
                     </div>
 

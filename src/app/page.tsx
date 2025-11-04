@@ -4,25 +4,25 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="py-16 lg:w-[880px] xl:w-[1110px] mx-1 sm:mx-5 md:mx-auto">
+    <section className="py-16 lg:max-w-[880px] xl:max-w-[1110px] mx-1 sm:mx-5 lg:mx-auto">
 
       <div className="pt-18"><CategoriesSection /></div>
 
-      <div 
-      className="categories relative mb-6 mt-6 md:mb-12 flex gap-7 flex-col md:flex-row justify-end md:justify-end items-center bg-primary md:w-full h-[650px] md:h-[560px] mx-2 sm:mx-5 md:mx-auto rounded-md overflow-hidden"
-      style={{ 
-        backgroundImage: "url('/roundBg.png')",
-        backgroundRepeat: "no-repeat",
-      }}
+      <div
+        className="categories relative mb-6 mt-6 md:mb-12 flex gap-7 flex-col md:flex-row justify-end md:justify-end items-center bg-primary md:w-full h-[650px] md:h-[560px] mx-2 sm:mx-5 md:mx-auto rounded-md overflow-hidden"
+        style={{
+          backgroundImage: "url('/roundBg.png')",
+          backgroundRepeat: "no-repeat",
+        }}
       >
 
-          <figure className="absolute img w-[300px] h-80 md:w-[630px] lg:w-[730px] md:h-[760px] md:-left-32 xl:left-0 md:top-20 lg:top-16 top-5 ">
+        <figure className="absolute img w-[300px] h-80 md:w-[630px] lg:w-[730px] md:h-[760px] md:-left-32 xl:left-0 md:top-20 lg:top-16 top-5 ">
           <Image
             fill
             className="object-contain"
             src={'/shared/desktop/image-category-thumbnail-speakers.png'}
             alt="Headphones category"
-            />
+          />
         </figure>
 
         <article className="md:ml-auto lg:pr-10 text-white text-center md:text-left pb-20 md:pb-0">
@@ -38,44 +38,44 @@ export default function Home() {
 
       <div className="md:w-full mx-5 md:mx-auto">
 
-      <div 
-      className="mb-6 md:mb-12 flex justify-start items-center h-80 rounded-md overflow-hidden"
-      style={{ 
-        backgroundImage: "url('/home/desktop/image-speaker-zx7.jpg')",
-        backgroundRepeat: "no-repeat",
-      }}
-      >
-        <article className="p-5 px-16 sm:px-24 text-black">
-          <h2 className="text-3xl font-semibold uppercase mb-10 leading-none">ZX7 Speaker</h2>
-          <Link href={`/products/zx7-speaker`} className="border border-black px-6 py-3 uppercase tracking-wide font-semibold text-sm">
-            See Product
-          </Link>
-        </article>
-
-      </div>
-
-      <div className="mb-6 md:mb-12 flex flex-col sm:flex-row gap-5 md:gap-7 h-[500px] md:h-80 justify-between items-center w-full">
-
-        <div 
-        className="flex-1 bg-gray-light w-full md:w-[540px] h-full rounded-md p-5 px-24 text-black flex flex-col justify-center bg-cover bg-center" 
-        style={{
-          backgroundImage: 'url(/home/desktop/image-earphones-yx1.jpg)',
-          backgroundRepeat: "no-repeat",
-          }}>
-
-        </div>
-
-        <div className="flex-1 bg-gray-light w-full md:w-[540px] h-full rounded-md p-5 px-24 text-black flex flex-col justify-center">
-          <article>
-            <h2 className="text-3xl font-semibold uppercase mb-10 leading-none">YX1 EARPHONES</h2>
-          <Link href={`/products/yx1-earphones`} className="border border-black px-6 py-3 uppercase tracking-wide font-semibold text-sm">
-            See Product
-          </Link>
+        <div
+          className="mb-6 md:mb-12 flex justify-start items-center h-80 rounded-md overflow-hidden"
+          style={{
+            backgroundImage: "url('/home/desktop/image-speaker-zx7.jpg')",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <article className="p-5 px-16 sm:px-24 text-black">
+            <h2 className="text-3xl font-semibold uppercase mb-10 leading-none">ZX7 Speaker</h2>
+            <Link href={`/products/zx7-speaker`} className="border border-black px-6 py-3 uppercase tracking-wide font-semibold text-sm">
+              See Product
+            </Link>
           </article>
-          
+
         </div>
 
-      </div>
+        <div className="mb-6 md:mb-12 flex flex-col sm:flex-row gap-5 md:gap-7 h-[500px] md:h-80 justify-between items-center w-full">
+
+          <div
+            className="flex-1 bg-gray-light w-full md:w-[540px] h-full rounded-md p-5 px-24 text-black flex flex-col justify-center bg-cover bg-center"
+            style={{
+              backgroundImage: 'url(/home/desktop/image-earphones-yx1.jpg)',
+              backgroundRepeat: "no-repeat",
+            }}>
+
+          </div>
+
+          <div className="flex-1 bg-gray-light w-full md:w-[540px] h-full rounded-md p-5 px-24 text-black flex flex-col justify-center">
+            <article>
+              <h2 className="text-3xl font-semibold uppercase mb-10 leading-none">YX1 EARPHONES</h2>
+              <Link href={`/products/yx1-earphones`} className="border border-black px-6 py-3 uppercase tracking-wide font-semibold text-sm">
+                See Product
+              </Link>
+            </article>
+
+          </div>
+
+        </div>
 
       </div>
 
