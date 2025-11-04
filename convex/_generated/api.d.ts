@@ -9,6 +9,7 @@
  */
 
 import type * as cart from "../cart.js";
+import type * as email from "../email.js";
 import type * as orders from "../orders.js";
 import type * as products from "../products.js";
 
@@ -28,6 +29,7 @@ import type {
  */
 declare const fullApi: ApiFromModules<{
   cart: typeof cart;
+  email: typeof email;
   orders: typeof orders;
   products: typeof products;
 }>;

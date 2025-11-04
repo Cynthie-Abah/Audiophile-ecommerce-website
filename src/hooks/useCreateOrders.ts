@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { api } from "../../convex/_generated/api";
 import { NewOrder } from "../../types";
 import { useClearCart } from "./cart/useClearCart";
+import { useSendEmail } from "./useSendEmail";
 
 export const useCreateOrder = ()=> {
     const {clearCart} = useClearCart();
+    const {sendOrderEmail} = useSendEmail()
     const mutate = useMutation(api.orders.createOrder)
     const [isloading ,setIsLoading] = useState(false);
 
@@ -16,6 +18,7 @@ export const useCreateOrder = ()=> {
     const data = await mutate(order)
     clearCart({userId: order.userId})
     // send email here 
+    sendOrderEmail(order)
     console.log(data);
     toast.success("Successfully placed Order, Check your email for confirmation")
     setIsLoading(false)

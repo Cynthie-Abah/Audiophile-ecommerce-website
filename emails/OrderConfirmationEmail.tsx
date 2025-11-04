@@ -1,25 +1,12 @@
 import { Html, Body, Container, Heading, Text, Button, Img } from "@react-email/components";
+import { NewOrder } from "../types";
 
 interface OrderConfirmationEmailProps {
-  userName: string;
-  orderId: string;
-  items: { name: string; quantity: number; price: number; imageUrl?: string }[];
-  shipping: {
-    address: string;
-    city: string;
-    zip: string;
-    country: string;
-  };
-  orderLink: string;
+  orderInfo: NewOrder
 }
 
-export function OrderConfirmationEmail({
-  userName,
-  orderId,
-  items,
-  shipping,
-  orderLink,
-}: OrderConfirmationEmailProps) {
+
+export function OrderConfirmationEmail({orderInfo}: OrderConfirmationEmailProps) {
   return (
     <Html>
       <Body style={{ fontFamily: "Arial, sans-serif", margin: 0, padding: 0, backgroundColor: "#f4f4f5" }}>
@@ -28,7 +15,7 @@ export function OrderConfirmationEmail({
 
           {/* Header */}
           <div style={{ backgroundColor: "#000", padding: "20px", textAlign: "center" }}>
-            <img
+            <Img
               src="https://audiophile-ecommerce-website-pi.vercel.app/audiophile.svg"
               alt="Audiophile Logo"
               style={{ maxWidth: "150px", margin: "0 auto" }}
@@ -38,10 +25,10 @@ export function OrderConfirmationEmail({
           {/* Greeting */}
           <div style={{ padding: "30px 20px 20px 20px", textAlign: "center" }}>
             <Heading style={{ fontSize: "22px", marginBottom: "10px", color: "#111" }}>
-              Hello {userName},
+              Hello {orderInfo.shippingInfo.name},
             </Heading>
             <Text style={{ fontSize: "16px", marginBottom: "30px", color: "#555" }}>
-              Your order <strong>#{orderId}</strong> has been successfully placed!
+              Your order <strong>#{orderInfo.orderId}</strong> has been successfully placed!
             </Text>
           </div>
 
@@ -51,17 +38,8 @@ export function OrderConfirmationEmail({
               Order Summary
             </Heading>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {items.map((item) => (
+              {orderInfo.items.map((item) => (
                 <li key={item.name} style={{ display: "flex", alignItems: "center", marginBottom: "15px", borderBottom: "1px solid #f0f0f0", paddingBottom: "10px" }}>
-                  {item.imageUrl && (
-                    <Img
-                      src={item.imageUrl}
-                      alt={item.name}
-                      width={60}
-                      height={60}
-                      style={{ borderRadius: "5px", marginRight: "15px", objectFit: "cover" }}
-                    />
-                  )}
                   <div>
                     <Text style={{ fontSize: "16px", color: "#111", fontWeight: "bold" }}>{item.name}</Text>
                     <Text style={{ fontSize: "14px", color: "#555" }}>Quantity: {item.quantity} - ${item.price}</Text>
@@ -69,6 +47,25 @@ export function OrderConfirmationEmail({
                 </li>
               ))}
             </ul>
+
+            <div style={{textTransform: 'uppercase', paddingTop: 10}}>
+                <div  style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15}}>
+                <span style={{color: 'black', opacity: 50, fontSize:15}}>Total</span>
+                <span style={{fontWeight: 'bold', fontSize: 18}}>$ {orderInfo.subTotal}</span>
+                </div>
+                <div  style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15}}>
+                <span style={{color: 'black', opacity: 50, fontSize:15}}>Shipping</span>
+                <span style={{fontWeight: 'bold', fontSize: 18}}>$ {orderInfo.shipping}</span>
+                </div>
+                <div  style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15}}>
+                <span style={{color: 'black', opacity: 50, fontSize:15}}>VAT (Included)</span>
+                <span style={{fontWeight: 'bold', fontSize: 18}}>$ {orderInfo.tax}</span>
+                </div>
+                <div  style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15}}>
+                <span style={{color: 'black', opacity: 50, fontSize:15}}>Grand Total</span>
+                <span style={{fontWeight: 'bold', fontSize: 18, color: '#d87d4a'}}>$ {orderInfo.grandTotal}</span>
+                </div>
+            </div>
           </div>
 
           {/* Shipping Details */}
@@ -77,14 +74,15 @@ export function OrderConfirmationEmail({
               Shipping Details
             </Heading>
             <Text style={{ fontSize: "14px", color: "#555", lineHeight: "1.5" }}>
-              {shipping.address}, {shipping.city}, {shipping.zip}, {shipping.country}
+              {orderInfo.shippingInfo.address}, {orderInfo.shippingInfo.city}, {orderInfo.shippingInfo.zip}, {orderInfo.shippingInfo.country}
             </Text>
           </div>
 
           {/* CTA Button */}
           <div style={{ textAlign: "center", padding: "0 20px 30px 20px" }}>
             <Button
-              href={orderLink}
+              href={`http://localhost:3000/?view=order-${orderInfo.orderId}`}
+              // href={`https://audiophile-ecommerce-website-pi.vercel.app/?view=order-${orderInfo.orderId}`}
               style={{
                 backgroundColor: "#D87D4A",
                 color: "#fff",

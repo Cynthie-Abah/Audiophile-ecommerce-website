@@ -29,7 +29,6 @@ export interface NewOrder {
    orderId: string,
       userId: string,
       items: CartItem[],
-      totalAmount: number,
       subTotal: number; 
       shipping: number; 
       grandTotal: number; 

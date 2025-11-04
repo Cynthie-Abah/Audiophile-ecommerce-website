@@ -11,8 +11,9 @@ import { useCreateOrder } from "@/hooks/useCreateOrders";
 
 export const CheckoutForm = () => {
     const { cart, isLoading, error } = useCart();
-    const {handleCreateOrder} = useCreateOrder()
+    const {handleCreateOrder, isloading} = useCreateOrder()
     const { handleSubmit, formState: { errors, isSubmitting }, register, reset, control, watch } = useForm<NewOrder>();
+    const isSending = isloading && isSubmitting
     const paymentMethod = watch('shippingInfo.paymentMethod')
 
     const subTotal = cart?.items.reduce((sum, item) => sum + item.price * item.quantity, 0) || 0;
@@ -332,7 +333,7 @@ export const CheckoutForm = () => {
     tax={tax}
     shipping={shipping}
     cart={cart} 
-    isSubmitting={isSubmitting}
+    isSubmitting={isSending}
      />
     </>
     
