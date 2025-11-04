@@ -7,6 +7,7 @@ import Hero from "@/components/landing-page/hero";
 import { Footer } from "@/components/base/footer";
 import { ReactNode } from "react";
 import { Bounce, ToastContainer } from "react-toastify";
+import CartModal from "@/components/cart-modal";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -18,7 +19,6 @@ export const metadata: Metadata = {
   title: "Audiophile",
   description: "Tailor your listening experience with bespoke dynamic drivers from the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even in noisy environments with its active noise cancellation feature.",
 };
-
 
 export default function RootLayout({
   children,
@@ -50,7 +50,8 @@ export default function RootLayout({
           </section>
           <main>
             {children}
-            {cart}
+            {/* {cart} */}
+            <CartModal />
           </main>
         </Providers>
           <Footer />

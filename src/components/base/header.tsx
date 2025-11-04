@@ -5,9 +5,19 @@ import Link from "next/link";
 import Logo from "../ui/logo";
 import Image from "next/image";
 import CategoriesSection from "../ui/categories-section";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const router = useRouter();
+
+  const handleOpenCart = ()=>{
+    const params = new URLSearchParams(searchParams.toString())
+      params.set('view', 'cart')
+      router.push(pathname + '?' + params.toString())
+  }
 
   return (
     <>
@@ -40,7 +50,7 @@ function Header() {
       </nav>
         {/* cart btn */}
        <nav className="cart relative w-6 h-6 transition-all">
-             <Link href={'/cart'} ><Image alt="carts-icon" src={'/carts.svg'} fill sizes="100%" /></Link>
+             <button onClick={handleOpenCart}><Image alt="carts-icon" src={'/carts.svg'} fill sizes="100%" /></button>
         </nav>
 
     </header>

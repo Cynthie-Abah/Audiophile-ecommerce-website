@@ -1,38 +1,15 @@
-"use client"
-import { useCart } from "@/hooks/cart/useCart";
-import { truncateText } from "@/libs/utils";
+import Summary from "@/components/checkout/summary";
 
-// export const items: CartItem[] = [
-//   {
-//     slug: "1",
-//     name: "XX59 Headphones",
-//     price: 899,
-//     quantity: 1,
-//     image: "/assets/product-xx59-headphones/desktop/image-product.jpg",
-//   },
-//   {
-//     slug: "2",
-//     name: "XX99 Mark I Headphones",
-//     price: 1750,
-//     quantity: 2,
-//     image: "/assets/product-xx99-mark-one-headphones/desktop/image-product.jpg",
-//   },
-//   {
-//     slug: "3",
-//     name: "XX99 Mark II Headphones",
-//     price: 2999,
-//     quantity: 1,
-//     image: "/assets/product-xx99-mark-two-headphones/desktop/image-product.jpg",
-//   },
-// ];
+
 // remove the state from here so it remains a server comp
 function Page() {
-const { cart, isLoading, error } = useCart();
+
   return (
     <div className="bg-gray-light px-5 sm:px-10 md:px-5 lg:px-14 py-5 sm:py-10">
         <button className="py-5 md:py-10 text-black/50">Go Back</button>
 
         <div className="flex flex-col md:flex-row gap-7 sm:gap-4 md:gap-8 ">
+
             <div className="w-full md:max-w-4xl mx-auto space-y-8 bg-white flex-2 rounded-md p-6 md:p-5 lg:p-12">
             {/* Checkout Header */}
             <h1 className="tracking-wide text-h3 font-semibold">CHECKOUT</h1>
@@ -152,64 +129,7 @@ const { cart, isLoading, error } = useCart();
             </section>
             </div>
 
-            <div className="w-full md:max-w-md p-6 h-fit space-y-6 bg-white flex-1 mb-10 rounded-md">
-                {/* Summary Header */}
-                <h2 className="text-lg font-semibold tracking-wide uppercase">Summary</h2>
-
-                {/* Cart Items */}
-                <div className="space-y-4">
-                    {cart?.items.length === 0 ? (
-                              <div className="text-center py-10 text-gray-500">Your cart is empty</div>
-                            ) : (
-                              <div className="space-y-6 lg:max-h-100 overflow-y-auto">
-                                {cart?.items.map((item) => (
-                                  <div key={item.slug} className="flex items-center justify-between">
-                                    <img
-                                      src={item.image}
-                                      alt={item.name}
-                                      className="w-16 h-16 rounded-md object-cover"
-                                    />
-                    
-                                    <div className="flex-1 px-4">
-                                      <h4 className=" text-body font-semibold leading-normal pb-2">{truncateText(item.name, 17)}</h4>
-                                      <p className="text-black/50 font-bold text-overline">
-                                        ${item.price} 
-                                      </p>
-                                    </div>
-                                        
-                                        <span className="text-body text-black/50 font-bold">x{item.quantity}</span>
-                                    
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                </div>
-
-                {/* Totals */}
-                <div className="space-y-2 uppercase">
-                    <div className="flex justify-between items-center pb-4">
-                    <span className="text-black/50 text-body">Total</span>
-                    <span className="font-bold text-h6">$5,396</span>
-                    </div>
-                    <div className="flex justify-between items-center pb-4">
-                    <span className="text-black/50 text-body">Shipping</span>
-                    <span className="font-bold text-h6">$50</span>
-                    </div>
-                    <div className="flex justify-between items-center pb-4">
-                    <span className="text-black/50 text-body">VAT (Included)</span>
-                    <span className=" text-h6 font-bold">$1,079</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                    <span className="text-black/50 text-body">Grand Total</span>
-                    <span className="text-primary font-bold text-h6">$5,446</span>
-                    </div>
-                </div>
-
-                {/* Pay Button */}
-                <button className="w-full bg-primary text-white py-4 text-subtitle uppercase tracking-wide font-bold hover:bg-primary-dark transition">
-                    Continue & Pay
-                </button>
-            </div>
+            <Summary />
 
             </div> 
         {/* </div> */}
