@@ -53,7 +53,7 @@ export const getCartbyId = query({
   },
 });
 
-// Update cart item quantity
+// Update cart item quantity - consumed!
 export const updateItem = mutation(async ({db}, {userId, slug, quantity } : {userId: string, slug: string, quantity: number}) => {
   const existing = await db
     .query("cart")

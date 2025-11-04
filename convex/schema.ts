@@ -53,31 +53,39 @@ export default defineSchema({
       })
     ),
   }),
+
 orders: defineTable({
-    userId: v.string(), 
+    orderId: v.string(),
+    userId: v.string(),
     items: v.array(
       v.object({
-        productId: v.id("products"), // npx convex run seed
-
         name: v.string(),
         price: v.number(),
         quantity: v.number(),
         image: v.string(),
+        slug: v.string(),
       })
     ),
-    totalAmount: v.number(),
-    status: v.string(), 
+    subTotal: v.number(),
+    shipping: v.number(),
+    grandTotal: v.number(),
+    tax: v.number(),
     shippingInfo: v.object({
       name: v.string(),
       email: v.string(),
       phone: v.string(),
       address: v.string(),
-      zip: v.string(),
+      zip: v.optional(v.string()),
       city: v.string(),
       country: v.string(),
+      paymentMethod: v.string(),
+      emoneyNumber: v.optional(v.string()),
+      emoneyPin: v.optional(v.number()),
     }),
-    createdAt: v.number(), 
+    createdAt: v.number(),
+    status: v.string() 
   }),
+
   cart: defineTable({
     userId: v.string(),
     items: v.array(
@@ -90,4 +98,5 @@ orders: defineTable({
       })
     ),
   })
+
 });

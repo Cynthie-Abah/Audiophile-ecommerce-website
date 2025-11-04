@@ -1,23 +1,3 @@
-// import { useQuery } from "convex/react";
-// import { api } from "../../convex/_generated/api";
-
-// export const useSingleProduct = (slug: string) => {
-// if(slug) {
-//   const product = useQuery(api.products.getBySlug, { slug: slug });
-
-
-//   const isLoading = product === undefined; 
-//   const error = product === null ? "Failed to fetch product" : null;
-//   if (error) {
-//     console.log(product);
-    
-//   }
-
-//   return { product, isLoading, error };
-// }
-
-// };
-
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 

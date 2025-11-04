@@ -4,29 +4,24 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 
-export const useUpdateCart = () => {
+export const useClearCart = () => {
     const [isLoading, setIsLoading] = useState(false)
     
-        const updateItem = useMutation(api.cart.updateItem).withOptimisticUpdate(
-        (localStore, { userId, slug, quantity }) => {
+        const clearCart = useMutation(api.cart.clearCart).withOptimisticUpdate(
+        (localStore, { userId }) => {
         try {
             setIsLoading(true)
             const cart = localStore.getQuery(api.cart.getCartbyId, { userId });
             if (cart) {
-            const updatedItems = cart.items.map((item) =>
-                item.slug === slug ? { ...item, quantity } : item
-            );
-            localStore.setQuery(api.cart.getCartbyId, { userId }, { ...cart, items: updatedItems });
+            localStore.setQuery(api.cart.getCartbyId, { userId }, { ...cart, items: [] });
             }
-
         } catch (error) {
-            toast.error('Error updating Quantity. Pls Try Again')
+            toast.error('Error Emptying Cart. Pls Try Again')
             throw error
         } finally {
                 setIsLoading(false)
             }
         }
         );
-        return {updateItem, isLoading}
+        return {clearCart, isLoading}
 }
-

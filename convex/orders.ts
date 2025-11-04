@@ -4,6 +4,7 @@ import { v } from "convex/values";
 // create new order
 export const createOrder = mutation({
   args: {
+    orderId: v.string(),
     userId: v.string(),
     items: v.array(
       v.object({
@@ -11,18 +12,24 @@ export const createOrder = mutation({
         price: v.number(),
         quantity: v.number(),
         image: v.string(),
-        productId: v.id("products"),
+        slug: v.string(),
       })
     ),
-    totalAmount: v.number(),
+    subTotal: v.number(),
+    shipping: v.number(),
+    grandTotal: v.number(),
+    tax: v.number(),
     shippingInfo: v.object({
       name: v.string(),
       email: v.string(),
       phone: v.string(),
       address: v.string(),
-      zip: v.string(),
+      zip: v.optional(v.string()),
       city: v.string(),
       country: v.string(),
+      paymentMethod: v.string(),
+      emoneyNumber: v.optional(v.string()),
+      emoneyPin: v.optional(v.number()),
     }),
   },
 

@@ -1,10 +1,10 @@
 "use client"
-
 import { truncateText } from "@/libs/utils";
-import { useCart } from "@/hooks/cart/useCart";
+import { Cart } from "../../../types";
 
-function Summary() {
-    const { cart, isLoading, error } = useCart();
+function Summary({cart, tax, shipping, isSubmitting}: {cart: Cart, isSubmitting: boolean, tax: number, shipping: number}) {
+  const total = cart?.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const grandTotal = total && total + shipping
   return (
     <div className="w-full md:max-w-md p-6 h-fit space-y-6 bg-white flex-1 mb-10 rounded-md">
                 {/* Summary Header */}
@@ -43,25 +43,25 @@ function Summary() {
                 <div className="space-y-2 uppercase">
                     <div className="flex justify-between items-center pb-4">
                     <span className="text-black/50 text-body">Total</span>
-                    <span className="font-bold text-h6">$5,396</span>
+                    <span className="font-bold text-h6">$ {total}</span>
                     </div>
                     <div className="flex justify-between items-center pb-4">
                     <span className="text-black/50 text-body">Shipping</span>
-                    <span className="font-bold text-h6">$50</span>
+                    <span className="font-bold text-h6">$ {shipping}</span>
                     </div>
                     <div className="flex justify-between items-center pb-4">
                     <span className="text-black/50 text-body">VAT (Included)</span>
-                    <span className=" text-h6 font-bold">$1,079</span>
+                    <span className=" text-h6 font-bold">$ {tax}</span>
                     </div>
                     <div className="flex justify-between items-center">
                     <span className="text-black/50 text-body">Grand Total</span>
-                    <span className="text-primary font-bold text-h6">$5,446</span>
+                    <span className="text-primary font-bold text-h6">$ {grandTotal}</span>
                     </div>
                 </div>
 
                 {/* Pay Button */}
-                <button className="w-full bg-primary text-white py-4 text-subtitle uppercase tracking-wide font-bold hover:bg-primary-dark transition">
-                    Continue & Pay
+                <button type="submit" disabled={isSubmitting} form="checkout-form" className="disabled:bg-primary-light cursor-pointer w-full bg-primary hover:bg-primary-light text-white py-4 text-subtitle uppercase tracking-wide font-bold hover:bg-primary-dark transition">
+                   {isSubmitting ? 'Submitting...' : 'Continue & Pay'}
                 </button>
             </div>
   )

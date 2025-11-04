@@ -7,9 +7,8 @@ import { useCart } from "@/hooks/cart/useCart";
 import Spinner from "@/components/ui/spinner";
 import { useUpdateCart } from "@/hooks/cart/useUpdateCart";
 import { useEffect, useState } from "react";
- 
 
- 
+
 
 export default function CartModal() {
 const searchParams = useSearchParams();
@@ -110,7 +109,7 @@ const searchParams = useSearchParams();
               <span>Total</span>
               <span>$ {total}</span>
             </div>
-            <button className="w-full bg-primary text-white py-3 font-semibold uppercase hover:bg-primary-light transition">
+            <button onClick={()=> router.push('/checkout')} className="cursor-pointer w-full bg-primary text-white py-3 font-semibold uppercase hover:bg-primary-light transition">
               Checkout
             </button>
           </div>

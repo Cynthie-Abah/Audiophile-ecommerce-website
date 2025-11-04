@@ -24,3 +24,26 @@ export interface Cart{
     userId: string,
     items: CartItem[]
 }
+
+export interface NewOrder {
+   orderId: string,
+      userId: string,
+      items: CartItem[],
+      totalAmount: number,
+      subTotal: number; 
+      shipping: number; 
+      grandTotal: number; 
+        tax: number; 
+      shippingInfo: {
+        name: string,
+        email: string,
+        phone: string,
+        address: string,
+        zip?: string,
+        city: string,
+        country: string,
+        paymentMethod: string,
+        emoneyNumber?: string,
+        emoneyPin?: number,
+      }
+}
