@@ -5,9 +5,10 @@ import Providers from "@/providers/Providers";
 import Header from "@/components/base/header";
 import Hero from "@/components/landing-page/hero";
 import { Footer } from "@/components/base/footer";
-import { ReactNode } from "react";
 import { Bounce, ToastContainer } from "react-toastify";
 import CartModal from "@/components/cart-modal";
+import { Suspense } from "react";
+import Spinner from "@/components/ui/spinner";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -22,10 +23,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  cart
 }: Readonly<{
   children: React.ReactNode;
-  cart:ReactNode
 }>) {
   return (
     <html lang="en">
@@ -42,19 +41,18 @@ export default function RootLayout({
           pauseOnHover
           theme="light"
           transition={Bounce}
-          />
+        />
         <Providers>
           <section className=" w-full bg-[#141414] text-white min-h-20 md:min-h-24 ">
-            <Header />
+            <Suspense fallback={<Spinner />}><Header /></Suspense>
             <Hero />
           </section>
           <main>
             {children}
-            {/* {cart} */}
-            <CartModal />
+            <Suspense fallback={<Spinner />}><CartModal /></Suspense>
           </main>
         </Providers>
-          <Footer />
+        <Footer />
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ import { useCart } from "@/hooks/cart/useCart";
 import Spinner from "@/components/ui/spinner";
 import { useUpdateCart } from "@/hooks/cart/useUpdateCart";
 import { useEffect, useState } from "react";
+import { useClearCart } from "@/hooks/cart/useClearCart";
 
 
 
@@ -23,6 +24,7 @@ const searchParams = useSearchParams();
     router.push(`${pathname}?${params.toString()}`);
   };
     const { cart, isLoading, error } = useCart();
+    const {clearCart} = useClearCart();
     const {products, isLoading: isfetching} = useProducts()
     const {updateItem} = useUpdateCart();
 
@@ -64,7 +66,7 @@ const searchParams = useSearchParams();
 
         <div className="flex justify-between mb-4">
             <h2 className="text-lg font-semibold">Cart ({cart?.items.length})</h2> 
-            <button className="underline text-black/50">Remove all</button>
+            <button onClick={()=> clearCart({userId: userId ?? ''})} className="underline text-black/50">Remove all</button>
         </div>
         
         {cart?.items.length === 0 ? (
