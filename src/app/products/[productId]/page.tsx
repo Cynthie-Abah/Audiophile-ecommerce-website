@@ -10,11 +10,9 @@ const page = async ({ params }: props) => {
   console.log(productId);
 
   return (
-    <div className='md:px-20 lg:px-28 pt-5 px-4 md:p-10 pb-0 '>
+    <div className='py-16 lg:max-w-[880px] xl:max-w-[1110px] mx-1 sm:mx-5 lg:mx-auto'>
       <button className="pb-10 md:p-10 text-black/50">Go Back</button>
       {productId && <Product slug={productId} />}
-
-      <CategoriesSection />
     </div>
   )
 }

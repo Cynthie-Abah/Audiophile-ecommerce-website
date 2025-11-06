@@ -9,6 +9,7 @@ import { useMemo, useState } from 'react'
 import { useAddCreateCart } from '@/hooks/cart/useAddCreateCart'
 import Image from 'next/image'
 import { toast } from 'react-toastify'
+import CategoriesSection from '../ui/categories-section'
 
 function Product({ slug }: { slug: string }) {
   const router = useRouter();
@@ -188,6 +189,11 @@ function Product({ slug }: { slug: string }) {
         </>
 
       }
+      
+      {/* <div className='flex justify-center sm:justify-between flex-col md:flex-row mx-auto sm:p-14 px-0 text-body leading-[25px] text-black/50'> */}
+        <CategoriesSection />
+      {/* </div> */}
+      
     </>
   )
 }
