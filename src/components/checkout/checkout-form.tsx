@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useCart } from "@/hooks/cart/useCart";
 import Spinner from "../ui/spinner";
 import { useCreateOrder } from "@/hooks/useCreateOrders";
+import { useRouter } from "next/navigation";
 
 export const CheckoutForm = () => {
     const { cart, isLoading, error } = useCart();
@@ -20,6 +21,7 @@ export const CheckoutForm = () => {
     const shipping = 50 * (cart?.items.length ?? 0) || 0
     const grandTotal = subTotal && subTotal + shipping || 0
     const tax = Math.round(subTotal * 0.07);
+    const router = useRouter();
 
     const onsubmit = (data: NewOrder)=>{
         if(cart) {
@@ -36,6 +38,7 @@ export const CheckoutForm = () => {
         }
         console.log( newOrder, 'DONE!');
         handleCreateOrder(newOrder)
+        router.push(`/?view=order-${orderId}`)
         reset();
         }
     }
