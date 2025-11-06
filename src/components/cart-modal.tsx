@@ -8,6 +8,7 @@ import Spinner from "@/components/ui/spinner";
 import { useUpdateCart } from "@/hooks/cart/useUpdateCart";
 import { useEffect, useState } from "react";
 import { useClearCart } from "@/hooks/cart/useClearCart";
+import { motion } from "motion/react"
 
 
 
@@ -54,8 +55,15 @@ export default function CartModal() {
   return (
     <>
       {isOpen &&
-        <div className=" w-screen fixed inset-0 z-50 flex items-start justify-center sm:justify-end bg-black/50 pt-24 px-5 md:px-10 md:p-10 overflow-hidden">
-          <div className="bg-white rounded-lg shadow-lg w-full sm:max-w-sm md:max-w-md p-8 px-5 sm:px-8 relative">
+  //       <motion.div initial={{ opacity: 0, y: 10 }}
+  // animate={{ opacity: 1, y: 0 }}
+  // transition={{ duration: 0.4 }} className=" w-screen fixed inset-0 z-50 flex items-start justify-center sm:justify-end bg-black/50 pt-24 px-5 md:px-10 md:p-10 overflow-hidden">
+         <div className=" w-screen fixed inset-0 z-50 flex items-start justify-center sm:justify-end bg-black/50 pt-24 px-5 md:px-10 md:p-10 overflow-hidden"> 
+          <motion.div 
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }} 
+          className="bg-white rounded-lg shadow-lg w-full sm:max-w-sm md:max-w-md p-8 px-5 sm:px-8 relative">
 
             <button
               className="absolute top-2 left-4 text-gray-400 hover:text-gray-600 text-xl font-bold"
@@ -117,7 +125,7 @@ export default function CartModal() {
                 </button>
               </div>
             )}
-          </div>
+          </motion.div>
         </div>}
     </>
   );

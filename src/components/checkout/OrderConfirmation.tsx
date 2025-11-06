@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import Spinner from "../ui/spinner";
 import { useOrder } from "@/hooks/useOrder";
+import { motion } from "motion/react"
 
 function OrderConfirmationContent() {
     const searchParams = useSearchParams();
@@ -25,13 +26,17 @@ function OrderConfirmationContent() {
     if (isOpen)
         return (
             <div className=" w-screen fixed inset-0 z-50 flex items-center justify-center bg-black/50 pt-24 px-5 md:px-10 md:p-10 overflow-hidden">
-                <div className="bg-white rounded-md shadow-lg max-w-lg w-full p-8 sm:p-14 text-left">
+                <motion.div 
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }} 
+                className="bg-white rounded-md shadow-lg max-w-lg w-full p-8 sm:p-14 text-left">
 
                     <div className="flex justify-start mb-6">
                         <FaCheckCircle className="text-primary w-16 h-16" />
                     </div>
 
-                    <h1 className="text-[32px] sm:text-3xl font-semibold uppercase tracking-wide">
+                    <h1 className="text-h3 sm:text-3xl font-semibold uppercase tracking-wide">
                         Thank you<br />for your order
                     </h1>
 
@@ -87,7 +92,7 @@ function OrderConfirmationContent() {
                     >
                         Back to Home
                     </button>
-                </div>
+                </motion.div>
             </div>
         );
 }

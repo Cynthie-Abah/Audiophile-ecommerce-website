@@ -144,7 +144,7 @@ function Product({ slug }: { slug: string }) {
               </figure>
             </div>
 
-            <figure className="relative sm:flex-1 md:flex-2 rounded-md overflow-hidden relative w-full sm:flex-1 h-[300px] sm:h-[600px] rounded-md overflow-hidden">
+            <figure className="relative sm:flex-1 md:flex-2 rounded-md overflow-hidden w-full h-[300px] sm:h-[600px]">
               <Image
                 fill
                 src={product.gallery.third.desktop}
