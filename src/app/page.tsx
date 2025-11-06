@@ -30,7 +30,7 @@ export default function Home() {
           <p className="text-white/70 mb-6 max-w-sm pr-5">
             Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.
           </p>
-          <Link href={`/product/zx9-speaker`} className="bg-black text-white px-6 py-3 uppercase font-semibold text-sm tracking-wide">
+          <Link href={`/product/zx9-speaker`} className="bg-black text-white px-6 py-3 uppercase font-semibold text-sm tracking-wide hover:bg-transparent hover:border hover:border-white transition">
             See Product
           </Link>
         </article>
@@ -47,7 +47,7 @@ export default function Home() {
         >
           <article className="p-5 px-16 sm:px-24 text-black">
             <h2 className="text-3xl font-semibold uppercase mb-10 leading-none">ZX7 Speaker</h2>
-            <Link href={`/products/zx7-speaker`} className="border border-black px-6 py-3 uppercase tracking-wide font-semibold text-sm">
+            <Link href={`/products/zx7-speaker`} className="border border-black px-6 py-3 uppercase tracking-wide font-semibold text-sm hover:bg-black hover:text-white transition">
               See Product
             </Link>
           </article>
@@ -68,7 +68,7 @@ export default function Home() {
           <div className="flex-1 bg-gray-light w-full md:w-[540px] h-full rounded-md p-5 px-24 text-black flex flex-col justify-center">
             <article>
               <h2 className="text-3xl font-semibold uppercase mb-10 leading-none">YX1 EARPHONES</h2>
-              <Link href={`/products/yx1-earphones`} className="border border-black px-6 py-3 uppercase tracking-wide font-semibold text-sm">
+              <Link href={`/products/yx1-earphones`} className="border border-black px-6 py-3 uppercase tracking-wide font-semibold text-sm hover:bg-black hover:text-white transition">
                 See Product
               </Link>
             </article>
