@@ -1,16 +1,18 @@
 "use client"
-import { useState } from "react";
+import { use, useState } from "react";
 import Link from "next/link";
 import Logo from "../ui/logo";
 import Image from "next/image";
 import CategoriesSection from "../ui/categories-section";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { useCart } from "@/hooks/cart/useCart";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const router = useRouter();
+  const {cart, isLoading, error} = useCart();
 
   const handleOpenCart = () => {
     const params = new URLSearchParams(searchParams.toString())
@@ -59,7 +61,16 @@ function Header() {
         </nav>
         {/* cart btn */}
         <nav className="cart relative w-6 h-6 transition-all">
-          <button onClick={handleOpenCart}><Image alt="carts-icon" src={'/carts.svg'} fill sizes="100%" /></button>
+          <button onClick={handleOpenCart}>
+            <Image alt="carts-icon" src={'/carts.svg'} fill sizes="100%" />
+            {
+          cart && cart.items.length > 0 && (
+            <span className=" absolute -top-2 -right-2 bg-primary text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold z-50 ">
+              {cart.items.length}
+            </span>
+          )
+        }
+            </button>
         </nav>
 
       </header>
