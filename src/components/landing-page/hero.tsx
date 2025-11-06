@@ -15,7 +15,7 @@ const Hero = () => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: .8, ease: "easeOut" }}
-      className="md:flex flex-col md:flex-row-reverse relative md:static items-center justify-center md:justify-between text-white mx-auto md:pt-0 xl:max-w-[1110px] flex px-6 md:px-10 h-screen">
+      className="md:flex flex-col md:flex-row-reverse relative md:static items-center justify-center md:justify-between text-white mx-auto md:pt-0 xl:max-w-[1150px] flex px-6 md:px-10 xl:px-0 h-screen">
       {/* Mobile Background Image */}
       <motion.div className="absolute inset-0 md:hidden">
         <Image
@@ -34,7 +34,7 @@ const Hero = () => {
        initial={{ x: 50, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-      className="md:w-1/2 relative w-full h-full min-h-[700px] hidden md:flex items-center justify-center">
+      className="md:w-[900px] relative w-full h-full hidden md:flex items-center justify-center">
         <Image
           src="/headphones.png"
           alt="Headphones"
@@ -59,7 +59,7 @@ const Hero = () => {
           XX99 Mark II <br /> Headphones
         </h3>
 
-        <p className="text-sm sm:text-base text-white/70 max-w-md mx-auto md:mx-0 w-5/6 leading-loose sm:leading-normal">
+        <p className="text-sm sm:text-base text-white/70 w-full mx-auto md:mx-0 leading-loose sm:leading-normal">
           Experience natural, lifelike audio and exceptional build quality made
           for the passionate music enthusiast.
         </p>
