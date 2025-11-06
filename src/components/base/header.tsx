@@ -20,7 +20,7 @@ function Header() {
 
   return (
     <>
-      <header className="absolute top-0 left-1/2 -translate-x-1/2 w-full md:w-3xl lg:w-[980px] xl:w-[1110px] hidden md:flex justify-between items-center py-0 md:py-4 px-6 text-white border-b border-b-white/20 z-30">
+      <header className="absolute top-0 left-1/2 -translate-x-1/2 w-full md:w-3xl lg:w-[980px] xl:w-[1110px] hidden md:flex justify-between items-center py-0 md:py-2 px-6 text-white border-b border-b-white/20 z-30">
         <div className="flex justify-evenly gap-10 items-center">
           {/* tab and mobile - hamburger */}
           <button
