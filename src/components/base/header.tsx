@@ -20,7 +20,7 @@ function Header() {
 
   return (
     <>
-      <header className="absolute top-0 left-1/2 -translate-x-1/2 w-full md:w-3xl lg:w-[980px] xl:w-[1110px] flex justify-between items-center py-0 md:py-4 px-6 text-white border-b border-b-white/20 z-30">
+      <header className="absolute top-0 left-1/2 -translate-x-1/2 w-full md:w-3xl lg:w-[980px] xl:w-[1110px] hidden md:flex justify-between items-center py-0 md:py-4 px-6 text-white border-b border-b-white/20 z-30">
         <div className="flex justify-evenly gap-10 items-center">
           {/* tab and mobile - hamburger */}
           <button
@@ -64,9 +64,53 @@ function Header() {
 
       </header>
 
-      {/* Mobile Navigation */}
+      <header className=" md:hidden absolute top-0 left-1/2 -translate-x-1/2 w-full md:w-3xl lg:w-[980px] xl:w-[1110px] text-white z-30">
+      <div className=" flex justify-between items-center py-0 md:py-2 px-6 text-white border-b border-b-white/20">
+        <div className="flex justify-evenly gap-10 items-center">
+          {/* tab and mobile - hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="relative w-6 h-6 md:hidden"
+          >
+            {/* {menuOpen ? 'X' : ( */}
+              <Image
+                alt="hamburger-icon"
+                src="/shared/tablet/icon-hamburger.svg"
+                fill
+                className="object-contain"
+              />
+            {/* )} */}
+          </button>
+
+          <Logo />
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex">
+          <ul className="flex uppercase gap-5 lg:gap-10 font-semibold text-sm tracking-[2px]">
+            <li>
+              <Link href="/" className="hover:text-primary cursor-pointer">home</Link>
+            </li>
+            <li>
+              <Link href="/headphones" className="hover:text-primary cursor-pointer">headphones</Link>
+            </li>
+            <li>
+              <Link href="/speakers" className="hover:text-primary cursor-pointer">speakers</Link>
+            </li>
+            <li>
+              <Link href="/earphones" className="hover:text-primary cursor-pointer">earphones</Link>
+            </li>
+          </ul>
+        </nav>
+        {/* cart btn */}
+        <nav className="cart relative w-6 h-6 transition-all">
+          <button onClick={handleOpenCart}><Image alt="carts-icon" src={'/carts.svg'} fill sizes="100%" /></button>
+        </nav>
+      </div>
+        
+             {/* Mobile Navigation */}
       {menuOpen && (
-        <div className=" w-screen fixed inset-0 z-50 flex items-start justify-center sm:justify-end bg-black/50 shadow-2xl md:hidden overflow-scroll top-20">
+        <div className=" w-screen inset-0 z-50 flex items-start justify-center sm:justify-end bg-black/50 shadow-2xl md:hidden overflow-scroll top-20">
           <nav className="w-full h-fit bg-white pt-16 md:pt-0 rounded-b-md ">
             <CategoriesSection />
           </nav>
@@ -74,6 +118,7 @@ function Header() {
         </div>
 
       )}
+      </header>
     </>
   );
 }
