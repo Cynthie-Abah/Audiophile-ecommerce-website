@@ -46,7 +46,7 @@ export default function RootLayout({
         />
         <Providers>
           <section className=" w-full bg-[#141414] text-white min-h-20 md:min-h-24 ">
-            <Suspense fallback={<Spinner />}><Header /></Suspense>
+            <Suspense fallback={<header className="absolute top-0 left-1/2 -translate-x-1/2 w-full md:w-3xl lg:w-[980px] xl:w-[1110px] hidden md:flex justify-between items-center py-0 md:py-2 px-6 text-white border-b border-b-white/20 z-30"></header>}><Header /></Suspense>
             <Hero />
           </section>
           <main>
