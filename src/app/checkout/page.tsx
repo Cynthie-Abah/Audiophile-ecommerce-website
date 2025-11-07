@@ -15,7 +15,7 @@ function Page() {
 
            <Suspense fallback={<Spinner />}><CheckoutForm /></Suspense>
 
-            </div>  
+        </div>  
         
     </div>
   )

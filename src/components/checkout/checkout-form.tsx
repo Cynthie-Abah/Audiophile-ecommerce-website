@@ -9,6 +9,7 @@ import { useCart } from "@/hooks/cart/useCart";
 import Spinner from "../ui/spinner";
 import { useCreateOrder } from "@/hooks/useCreateOrders";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export const CheckoutForm = () => {
     const { cart, isLoading, error } = useCart();
@@ -328,6 +329,22 @@ export const CheckoutForm = () => {
                     )}
                 </div>
                 </div>
+                }
+
+                { paymentMethod === 'CashOnDelivery' &&
+                <div className="flex justify-center items-center gap-5">
+                    <div className="icon w-52 sm:w-32 h-52 sm:h-32 relative">
+                     <Image
+                      src="/assets/checkout/icon-cash-on-delivery.svg"
+                      alt="cash-on-delivery"
+                      fill
+                      className="object-contain"
+                     />
+                    </div>
+                    <div className="text-sm sm:text-body text-black/50 mt-4">
+                        The ‘Cash on Delivery’ option enables you to pay in cash when our delivery courier arrives at your residence. Just make sure your address is correct so that your order will not be cancelled.
+                    </div>
+                    </div>
                 }
             </section>
     </form>
