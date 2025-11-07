@@ -333,7 +333,7 @@ export const CheckoutForm = () => {
 
                 { paymentMethod === 'CashOnDelivery' &&
                 <div className="flex justify-center items-center gap-5">
-                    <div className="icon w-52 sm:w-32 h-52 sm:h-32 relative">
+                    <div className="flex-1 icon w-52 sm:w-32 h-52 sm:h-32 relative">
                      <Image
                       src="/assets/checkout/icon-cash-on-delivery.svg"
                       alt="cash-on-delivery"
@@ -341,7 +341,7 @@ export const CheckoutForm = () => {
                       className="object-contain"
                      />
                     </div>
-                    <div className="text-sm sm:text-body text-black/50 mt-4">
+                    <div className="flex-2 text-sm sm:text-body text-black/50 mt-4">
                         The ‘Cash on Delivery’ option enables you to pay in cash when our delivery courier arrives at your residence. Just make sure your address is correct so that your order will not be cancelled.
                     </div>
                     </div>
