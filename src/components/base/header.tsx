@@ -18,6 +18,7 @@ function Header() {
     const params = new URLSearchParams(searchParams.toString())
     params.set('view', 'cart')
     router.push(pathname + '?' + params.toString())
+    setMenuOpen(false)
   }
 
   return (
@@ -100,16 +101,16 @@ function Header() {
         <nav className="hidden md:flex">
           <ul className="flex uppercase gap-5 lg:gap-10 font-semibold text-sm tracking-[2px]">
             <li>
-              <Link href="/" className="hover:text-primary cursor-pointer">home</Link>
+              <Link onClick={()=> setMenuOpen(false)} href="/" className="hover:text-primary cursor-pointer">home</Link>
             </li>
             <li>
-              <Link href="/headphones" className="hover:text-primary cursor-pointer">headphones</Link>
+              <Link onClick={()=> setMenuOpen(false)} href="/headphones" className="hover:text-primary cursor-pointer">headphones</Link>
             </li>
             <li>
-              <Link href="/speakers" className="hover:text-primary cursor-pointer">speakers</Link>
+              <Link onClick={()=> setMenuOpen(false)} href="/speakers" className="hover:text-primary cursor-pointer">speakers</Link>
             </li>
             <li>
-              <Link href="/earphones" className="hover:text-primary cursor-pointer">earphones</Link>
+              <Link onClick={()=> setMenuOpen(false)} href="/earphones" className="hover:text-primary cursor-pointer">earphones</Link>
             </li>
           </ul>
         </nav>
